@@ -86,11 +86,14 @@ console.log(exec(`ls`,`-la`))
 //  return data;
 //}
 
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+
 export default async function handler(req: GatsbyFunctionRequest, res: GatsbyFunctionResponse) {
   const headers = req.headers
   const ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
   console.log(ip);
   const ress = await fetch(`https://10.26.0.1`)
+
   console.log(ress.status)
   console.log(await ress.text())
     //
