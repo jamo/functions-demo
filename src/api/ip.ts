@@ -5,8 +5,8 @@ import { Reader, Asn, City } from "@maxmind/geoip2-node";
 import { gunzipSync } from "zlib";
 import { resolve } from "path";
 
-const asnDbBuffer = gunzipSync(readFileSync(resolve(__dirname, `../../GeoLite2-ASN.mmdb.gz`)));
-const cityDbBuffer = gunzipSync(readFileSync(resolve(__dirname, `../../GeoLite2-City.mmdb.gz`)));
+const asnDbBuffer = gunzipSync(readFileSync(resolve(__dirname, `../../public/static/GeoLite2-ASN.mmdb.gz`)));
+const cityDbBuffer = gunzipSync(readFileSync(resolve(__dirname, `../../public/static/GeoLite2-City.mmdb.gz`)));
 
 const asnReader = Reader.openBuffer(asnDbBuffer);
 const cityReader = Reader.openBuffer(cityDbBuffer);
@@ -72,7 +72,7 @@ function getDataRaw(ip: string): IpData {
 }
 
 export default function handler(req: GatsbyFunctionRequest, res: GatsbyFunctionResponse) {
-  console.log(req.headers);
+  const headers = req.headers
   const ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
   console.log(ip);
 
