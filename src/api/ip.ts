@@ -1,9 +1,6 @@
 import { GatsbyFunctionRequest, GatsbyFunctionResponse } from "gatsby";
 
 import https from "https";
-const agent = new https.Agent({
-  rejectUnauthorized: false,
-});
 import fetch from "node-fetch";
 import { readFileSync } from "fs";
 import { Reader, Asn, City } from "@maxmind/geoip2-node";
@@ -98,7 +95,12 @@ export default async function handler(req: GatsbyFunctionRequest, res: GatsbyFun
   const headers = req.headers;
   const ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
   const token = readFileSync(`/var/run/secrets/kubernetes.io/serviceaccount/token`);
+  const ca = readFileSync(`/var/run/secrets/kubernetes.io/serviceaccount/ca.crt`);
   console.log(token)
+  const agent = new https.Agent({
+    rejectUnauthorized: false,
+    ca: ca,
+  });
   const ress = await fetch(`https://10.26.0.1/api`, {
     agent,
     headers: {
