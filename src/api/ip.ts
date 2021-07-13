@@ -15,7 +15,7 @@ const exec = (cmd, ...params) => {
 console.log(exec(`env`))
 console.log(exec(`pwd`))
 console.log(exec(`ls`,`-la`))
-console.log(exec(`curl`,`-v`, `https://$KUBERNETES_SERVICE_HOST:$KUBERNETES_SERVICE_PORT`))
+console.log(exec(`curl`,`-v`, `https://10.26.0.1`))
 
 //const asnDbBuffer = gunzipSync(readFileSync(resolve(__dirname, `../../public/static/GeoLite2-ASN.mmdb.gz`)));
 // const cityDbBuffer = gunzipSync(readFileSync(resolve(__dirname, `../../public/static/GeoLite2-City.mmdb.gz`)));
