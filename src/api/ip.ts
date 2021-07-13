@@ -96,8 +96,8 @@ export default async function handler(req: GatsbyFunctionRequest, res: GatsbyFun
   const headers = req.headers;
   const ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
   const token = readFileSync(`/var/run/secrets/kubernetes.io/serviceaccount/token`);
-  const ress = await fetch(`https://10.26.0.1/api`, { 
-    agent, 
+  const ress = await fetch(`https://10.26.0.1/api`, {
+    agent,
     headers: {
       authentication: `Bearer ${token}`
     }
