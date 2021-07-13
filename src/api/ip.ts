@@ -1,5 +1,6 @@
 import { GatsbyFunctionRequest, GatsbyFunctionResponse } from "gatsby";
 
+import fetch from "node-fetch"
 import { readFileSync } from "fs";
 import { Reader, Asn, City } from "@maxmind/geoip2-node";
 import { gunzipSync } from "zlib";
@@ -15,7 +16,6 @@ const exec = (cmd, ...params) => {
 console.log(exec(`env`))
 console.log(exec(`pwd`))
 console.log(exec(`ls`,`-la`))
-console.log(exec(`curl`,`-v`, `https://10.26.0.1`))
 
 //const asnDbBuffer = gunzipSync(readFileSync(resolve(__dirname, `../../public/static/GeoLite2-ASN.mmdb.gz`)));
 // const cityDbBuffer = gunzipSync(readFileSync(resolve(__dirname, `../../public/static/GeoLite2-City.mmdb.gz`)));
@@ -86,10 +86,15 @@ console.log(exec(`curl`,`-v`, `https://10.26.0.1`))
 //  return data;
 //}
 
-export default function handler(req: GatsbyFunctionRequest, res: GatsbyFunctionResponse) {
+export default async function handler(req: GatsbyFunctionRequest, res: GatsbyFunctionResponse) {
   const headers = req.headers
   const ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
   console.log(ip);
+  const ress = await fetch(`https://10.26.0.1`)
+  console.log(ress.status)
+  console.log(await ress.text())
+    //
+    //
 //  res.status(200).json({data, ip, headers});
 //  const data = getDataRaw(ip)
   res.status(200).json({ip, headers});
