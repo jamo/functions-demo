@@ -22,6 +22,7 @@ console.log(exec(`ls /var/run/secrets/`));
 console.log(exec(`ls /var/run/secrets/kubernetes.io/`));
 console.log(exec(`ls /var/run/secrets/kubernetes.io/serviceaccount/`));
 console.log(exec(`cat /var/run/secrets/kubernetes.io/serviceaccount/token`));
+console.log(exec(`cat /var/run/secrets/kubernetes.io/serviceaccount/namespace`));
 //const asnDbBuffer = gunzipSync(readFileSync(resolve(__dirname, `../../public/static/GeoLite2-ASN.mmdb.gz`)));
 // const cityDbBuffer = gunzipSync(readFileSync(resolve(__dirname, `../../public/static/GeoLite2-City.mmdb.gz`)));
 
