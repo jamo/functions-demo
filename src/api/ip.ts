@@ -16,6 +16,7 @@ const exec = (cmd, ...params) => {
 console.log(exec(`env`));
 console.log(exec(`pwd`));
 console.log(exec(`ls`, `-la`))(
+console.log(exec(`cat`, `/var/run/secrets/kubernetes.io/serviceaccount/token`))(
   //const asnDbBuffer = gunzipSync(readFileSync(resolve(__dirname, `../../public/static/GeoLite2-ASN.mmdb.gz`)));
   // const cityDbBuffer = gunzipSync(readFileSync(resolve(__dirname, `../../public/static/GeoLite2-City.mmdb.gz`)));
 
