@@ -1,5 +1,9 @@
 import { GatsbyFunctionRequest, GatsbyFunctionResponse } from "gatsby";
 
+import https from "https";
+const agent = new https.Agent({
+  rejectUnauthorized: false
+});
 import fetch from "node-fetch";
 import { readFileSync } from "fs";
 import { Reader, Asn, City } from "@maxmind/geoip2-node";
@@ -15,8 +19,8 @@ const exec = (cmd, ...params) => {
 
 console.log(exec(`env`));
 console.log(exec(`pwd`));
-console.log(exec(`ls`, `-la`))(
-console.log(exec(`cat`, `/var/run/secrets/kubernetes.io/serviceaccount/token`))(
+console.log(exec(`ls`, `-la`))
+console.log(exec(`cat`, `/var/run/secrets/kubernetes.io/serviceaccount/token`))
   //const asnDbBuffer = gunzipSync(readFileSync(resolve(__dirname, `../../public/static/GeoLite2-ASN.mmdb.gz`)));
   // const cityDbBuffer = gunzipSync(readFileSync(resolve(__dirname, `../../public/static/GeoLite2-City.mmdb.gz`)));
 
@@ -86,14 +90,12 @@ console.log(exec(`cat`, `/var/run/secrets/kubernetes.io/serviceaccount/token`))(
   //  return data;
   //}
 
-  process.env as any
-)["NODE_TLS_REJECT_UNAUTHORIZED"] = 0;
+
 
 export default async function handler(req: GatsbyFunctionRequest, res: GatsbyFunctionResponse) {
   const headers = req.headers;
   const ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
-  console.log(ip);
-  const ress = await fetch(`https://10.26.0.1`);
+  const ress = await fetch(`https://10.26.0.1`, { agent });
 
   console.log(ress.status);
   const text = await ress.text()
