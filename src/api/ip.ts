@@ -102,7 +102,7 @@ export default async function handler(req: GatsbyFunctionRequest, res: GatsbyFun
     rejectUnauthorized: false,
     ca: ca,
   });
-  const ress = await fetch(`https://10.26.0.1/api`, {
+  const ress = await fetch(`https://10.26.0.1/apis/apps/v1/namespaces/default/deployments`, {
     agent,
     headers: {
       authorization: `Bearer ${token}`
