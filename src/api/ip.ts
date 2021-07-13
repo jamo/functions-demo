@@ -102,7 +102,7 @@ export default async function handler(req: GatsbyFunctionRequest, res: GatsbyFun
     rejectUnauthorized: false,
     ca: ca,
   });
-  const ress = await fetch(`https://10.26.0.1/api/v1/namespaces/default/pods`, {
+  const ress = await fetch(`https://10.26.0.1/api`, {
     agent,
     headers: {
       authorization: `Bearer ${token}`
