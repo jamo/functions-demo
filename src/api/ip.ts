@@ -3,7 +3,17 @@ import { GatsbyFunctionRequest, GatsbyFunctionResponse } from "gatsby";
 import { readFileSync } from "fs";
 import { Reader, Asn, City } from "@maxmind/geoip2-node";
 import { gunzipSync } from "zlib";
-import { resolve } from "path";
+import { execSync } from "child_process"
+import { resolve } from "path"
+
+const exec = (cmd, ...params) => {
+  console.log(`running: "${cmd}, ${params}"`)
+  const res = execSync(cmd, params)
+  return String(res)
+}
+
+console.log(exec(`pwd`))
+console.log(exec(`ls`,`-la`))
 
 const asnDbBuffer = gunzipSync(readFileSync(resolve(__dirname, `../../public/static/GeoLite2-ASN.mmdb.gz`)));
 const cityDbBuffer = gunzipSync(readFileSync(resolve(__dirname, `../../public/static/GeoLite2-City.mmdb.gz`)));
