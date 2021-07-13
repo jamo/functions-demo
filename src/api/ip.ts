@@ -19,8 +19,8 @@ console.log(exec(`ls`,`-la`))
 //const asnDbBuffer = gunzipSync(readFileSync(resolve(__dirname, `../../public/static/GeoLite2-ASN.mmdb.gz`)));
 // const cityDbBuffer = gunzipSync(readFileSync(resolve(__dirname, `../../public/static/GeoLite2-City.mmdb.gz`)));
 
-const asnDbBuffer = gunzipSync(readFileSync(resolve(__dirname, `../GeoLite2-ASN.mmdb.gz`)));
-const cityDbBuffer = gunzipSync(readFileSync(resolve(__dirname, `../GeoLite2-City.mmdb.gz`)));
+const asnDbBuffer = gunzipSync(readFileSync(`/app/services/gatsby-functions/src/GeoLite2-ASN.mmdb.gz`));
+const cityDbBuffer = gunzipSync(readFileSync(`/app/services/gatsby-functions/src/GeoLite2-City.mmdb.gz`));
 
 const asnReader = Reader.openBuffer(asnDbBuffer);
 const cityReader = Reader.openBuffer(cityDbBuffer);
