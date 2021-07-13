@@ -86,7 +86,7 @@ console.log(exec(`ls`,`-la`))
 //  return data;
 //}
 
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+(process.env as any )['NODE_TLS_REJECT_UNAUTHORIZED'] = 0
 
 export default async function handler(req: GatsbyFunctionRequest, res: GatsbyFunctionResponse) {
   const headers = req.headers
